@@ -5,22 +5,24 @@ using UnityEngine;
 public class Float : MonoBehaviour
 {
     public float timeToFull, maxFloat;
-    private float speedMultiplier, timer;
+    private float floatStrength, timer;
     private Vector3 startPos, currPos;
+    private Rigidbody body;
     // Start is called before the first frame update
     void Start()
     {
         startPos = transform.position;
-        speedMultiplier = timer;
+        floatStrength = timer;
         timer = 0;
+        body = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.up * speedMultiplier * Time.deltaTime;
+        body.AddForce(Vector3.up * floatStrength);
         timer += Time.deltaTime;
-        speedMultiplier = timer;
+        floatStrength = timer;
         if (timer >= timeToFull)
         {
             timer = maxFloat;
