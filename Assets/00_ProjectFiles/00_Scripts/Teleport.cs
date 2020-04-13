@@ -19,8 +19,11 @@ public class Teleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Transform other = collider.gameObject.transform.root;
-        Instantiate(other, new Vector3(arriveHere.transform.position.x, arriveHere.transform.position.y, arriveHere.transform.position.z), Quaternion.identity);
-        Destroy(other.gameObject);
+        if (collider.gameObject.tag == "Respawn")
+        {
+            Transform other = collider.gameObject.transform.root;
+            Instantiate(other, new Vector3(arriveHere.transform.position.x, arriveHere.transform.position.y, arriveHere.transform.position.z), Quaternion.identity);
+            Destroy(other.gameObject);
+        }
     }
 }
